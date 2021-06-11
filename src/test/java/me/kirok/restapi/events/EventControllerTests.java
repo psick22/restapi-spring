@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDateTime;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,6 +30,7 @@ public class EventControllerTests {
     ObjectMapper objectMapper;
 
     @Test
+    @DisplayName("이벤트를 정상적으로 생성하고 created를 반환")
     public void createEvent() throws Exception {
 
         EventDto eventDto = EventDto.builder()
@@ -63,6 +65,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @DisplayName("DTO에 없는 속성을 입력했을 경우에 bad request를 반환")
     public void createEvent_Bad_Request() throws Exception {
 
         Event event = Event.builder()
@@ -100,6 +103,7 @@ public class EventControllerTests {
     }
 
     @Test
+    @DisplayName("필수 속성의 입력값이 비어있을 때 bad request를 반환")
     public void createEvent_Bad_Request_Empty_Input() throws Exception {
 
         EventDto eventDto = EventDto.builder().build();
@@ -113,7 +117,9 @@ public class EventControllerTests {
 
     }
 
+
     @Test
+    @DisplayName("입력 값이 잘못되었을 때 bad request를 반환")
     public void createEvent_Bad_Request_Wrong_Input() throws Exception {
 
         EventDto eventDto = EventDto.builder()
