@@ -11,8 +11,9 @@ public class EventValidator {
 
         if (eventDto.getBasePrice() > eventDto.getMaxPrice() && eventDto.getMaxPrice() != 0) {
 
-            errors.rejectValue("basePrice", "wrongValue", "BasePrice 입력값이 유효하지 않습니다.");
-            errors.rejectValue("maxPrice", "wrongValue", "maxPrice 입력값이 유효하지 않습니다.");
+//            errors.rejectValue("basePrice", "wrongValue", "BasePrice 입력값이 유효하지 않습니다.");
+//            errors.rejectValue("maxPrice", "wrongValue", "maxPrice 입력값이 유효하지 않습니다.");
+            errors.reject("wrongPrices", "invalid values");
 
         }
 
@@ -27,18 +28,18 @@ public class EventValidator {
         ) {
             errors
                 .rejectValue("endEventDateTime", "wrongValue",
-                    "endEventDateTime 입력값이 유효하지 않습니다.");
+                    "endEventDateTime is not valid.");
         }
 
         if (closeEnrollmentDateTime.isBefore(beginEnrollmentDateTime)) {
             errors.rejectValue("closeEnrollmentDateTime", "wrongValue",
-                "closeEnrollmentDateTime 입력값이 유효하지 않습니다.");
+                "closeEnrollmentDateTime is not valid.");
         }
 
         if (beginEventDateTime.isBefore(beginEnrollmentDateTime) || beginEventDateTime
             .isBefore(closeEnrollmentDateTime)) {
             errors.rejectValue("beginEventDateTime", "wrongValue",
-                "beginEventDateTime 입력값이 유효하지 않습니다.");
+                "beginEventDateTime is not valid.");
 
         }
 
