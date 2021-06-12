@@ -1,11 +1,15 @@
 package me.kirok.restapi.events;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.net.URI;
+import java.util.HashMap;
 import javax.validation.Valid;
+import me.kirok.restapi.index.IndexController;
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +37,12 @@ public class EventController {
     @PostMapping
     public ResponseEntity createEvent(@RequestBody @Valid EventDto eventDto, Errors errors) {
         if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().build();
+            return badRequest(errors);
         }
 
         eventValidator.validate(eventDto, errors);
         if (errors.hasErrors()) {
-            return ResponseEntity.badRequest().body(errors);
+            return badRequest(errors);
         }
 
         Event event = modelMapper.map(eventDto, Event.class);
@@ -53,10 +57,27 @@ public class EventController {
                 event,
                 linkTo(EventController.class).withRel("query-events"),
                 selfLinkBuilder.withSelfRel(),
-                selfLinkBuilder.withRel("update-event")
+                selfLinkBuilder.withRel("update-event"),
+                Link.of("http://localhost:8080/docs/index.html", "profile")
             );
 
+        System.out.println("eventResource = " + eventResource);
+
         return ResponseEntity.created(createdUri).body(eventResource);
+    }
+
+    private ResponseEntity<EntityModel<HashMap<String, Errors>>> badRequest(
+        Errors errors) {
+        HashMap<String, Errors> errorsHashMap = new HashMap<>();
+        errorsHashMap.put("errors", errors);
+
+        EntityModel<HashMap<String, Errors>> response =
+            EntityModel.of(
+                errorsHashMap,
+                linkTo(methodOn(IndexController.class).index()).withRel("index")
+            );
+
+        return ResponseEntity.badRequest().body(response);
     }
 
 
