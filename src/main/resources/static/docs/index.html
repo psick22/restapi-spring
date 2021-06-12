@@ -5,8 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<meta name="author" content="백기선">
-<title>Natural REST API Guide</title>
+<title>REST API Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -434,10 +433,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Natural REST API Guide</h1>
-<div class="details">
-<span id="author" class="author">백기선</span><br>
-</div>
+<h1>REST API Guide</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel0">
@@ -669,14 +665,252 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect3">
 <h4 id="resources-events-list_curl_request"><a class="link" href="#resources-events-list_curl_request">Example request</a></h4>
-<div class="paragraph">
-<p>Snippet curl-request not found for operation::get-events</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ curl 'http://localhost:8080/api/events?page=1&amp;size=10&amp;sort=name%2CDESC' -i -X GET</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="resources-events-list_http_response"><a class="link" href="#resources-events-list_http_response">Example response</a></h4>
-<div class="paragraph">
-<p>Snippet http-response not found for operation::get-events</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/hal+json;charset=UTF-8
+Content-Length: 6035
+
+{
+  "_embedded" : {
+    "eventList" : [ {
+      "id" : 27,
+      "name" : "event 26",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/27"
+        }
+      }
+    }, {
+      "id" : 26,
+      "name" : "event 25",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/26"
+        }
+      }
+    }, {
+      "id" : 25,
+      "name" : "event 24",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/25"
+        }
+      }
+    }, {
+      "id" : 24,
+      "name" : "event 23",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/24"
+        }
+      }
+    }, {
+      "id" : 23,
+      "name" : "event 22",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/23"
+        }
+      }
+    }, {
+      "id" : 22,
+      "name" : "event 21",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/22"
+        }
+      }
+    }, {
+      "id" : 21,
+      "name" : "event 20",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/21"
+        }
+      }
+    }, {
+      "id" : 3,
+      "name" : "event 2",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/3"
+        }
+      }
+    }, {
+      "id" : 20,
+      "name" : "event 19",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/20"
+        }
+      }
+    }, {
+      "id" : 19,
+      "name" : "event 18",
+      "description" : "test event",
+      "beginEnrollmentDateTime" : null,
+      "closeEnrollmentDateTime" : null,
+      "beginEventDateTime" : null,
+      "endEventDateTime" : null,
+      "location" : null,
+      "basePrice" : 0,
+      "maxPrice" : 0,
+      "limitOfEnrollment" : 0,
+      "offline" : false,
+      "free" : false,
+      "eventStatus" : null,
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8080/api/events/19"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "first" : {
+      "href" : "http://localhost:8080/api/events?page=0&amp;size=10&amp;sort=name,desc"
+    },
+    "prev" : {
+      "href" : "http://localhost:8080/api/events?page=0&amp;size=10&amp;sort=name,desc"
+    },
+    "self" : {
+      "href" : "http://localhost:8080/api/events?page=1&amp;size=10&amp;sort=name,desc"
+    },
+    "next" : {
+      "href" : "http://localhost:8080/api/events?page=2&amp;size=10&amp;sort=name,desc"
+    },
+    "last" : {
+      "href" : "http://localhost:8080/api/events?page=2&amp;size=10&amp;sort=name,desc"
+    },
+    "profile" : {
+      "href" : "http://localhost:8080/docs/index.html#resources-events-list"
+    }
+  },
+  "page" : {
+    "size" : 10,
+    "totalElements" : 30,
+    "totalPages" : 3,
+    "number" : 1
+  }
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -837,12 +1071,12 @@ Host: localhost:8080
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
-Location: http://localhost:8080/api/events/1
+Location: http://localhost:8080/api/events/31
 Content-Type: application/hal+json;charset=UTF-8
-Content-Length: 760
+Content-Length: 763
 
 {
-  "id" : 1,
+  "id" : 31,
   "name" : "spring",
   "description" : "rest api",
   "beginEnrollmentDateTime" : "2021-07-30T21:21:00",
@@ -861,10 +1095,10 @@ Content-Length: 760
       "href" : "http://localhost:8080/api/events"
     },
     "self" : {
-      "href" : "http://localhost:8080/api/events/1"
+      "href" : "http://localhost:8080/api/events/31"
     },
     "update-event" : {
-      "href" : "http://localhost:8080/api/events/1"
+      "href" : "http://localhost:8080/api/events/31"
     },
     "profile" : {
       "href" : "http://localhost:8080/docs/index.html"
@@ -1107,7 +1341,7 @@ Content-Length: 760
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-06-12 23:22:22 +0900
+Last updated 2021-06-13 02:45:10 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">

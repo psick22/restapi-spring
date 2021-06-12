@@ -33,6 +33,7 @@ dependencies {
     asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.5.RELEASE'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE'
 
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.postgresql:postgresql'
@@ -54,12 +55,12 @@ asciidoctor {
     dependsOn test
 }
 
-//bootJar {
-//    dependsOn asciidoctor
-//    from("${asciidoctor.outputDir}/html5") {
-//        into "BOOT-INF/classes/static/docs"
-//    }
-//}
+bootJar {
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}/html5") {
+        into "BOOT-INF/classes/static/docs"
+    }
+}
 
 task copyDocument(type: Copy) {
     dependsOn asciidoctor

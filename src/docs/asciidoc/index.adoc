@@ -1,5 +1,4 @@
-= Natural REST API Guide
-백기선;
+= REST API Guide
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
