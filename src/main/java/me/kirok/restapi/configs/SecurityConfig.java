@@ -20,11 +20,15 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    AccountService accountService;
+    private final AccountService accountService;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public SecurityConfig(AccountService accountService,
+        PasswordEncoder passwordEncoder) {
+        this.accountService = accountService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Bean
     public TokenStore tokenStore() {
@@ -50,13 +54,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .anonymous().and()
-            .formLogin().and()
-            .authorizeRequests()
-            .mvcMatchers(HttpMethod.GET, "/api/**").authenticated()
-            .anyRequest().authenticated();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//            .anonymous().and()
+//            .formLogin().and()
+//            .authorizeRequests()
+//            .mvcMatchers(HttpMethod.GET, "/api/**").authenticated()
+//            .anyRequest().authenticated();
+//    }
 }
