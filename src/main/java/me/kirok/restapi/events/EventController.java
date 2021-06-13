@@ -15,6 +15,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.MediaTypes;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,8 @@ public class EventController {
     }
 
     @GetMapping
-    public ResponseEntity queryEvents(Pageable pageable, PagedResourcesAssembler<Event> assembler) {
+    public ResponseEntity<PagedModel<EntityModel<Event>>> queryEvents(Pageable pageable,
+        PagedResourcesAssembler<Event> assembler) {
 
         Page<Event> page = this.eventRepository.findAll(pageable);
         var pagedModel = assembler.toModel(page,
@@ -60,7 +62,7 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getEvent(@PathVariable Integer id) {
+    public ResponseEntity<EntityModel<Event>> getEvent(@PathVariable Integer id) {
         Optional<Event> optionalEvent = this.eventRepository.findById(id);
         if (optionalEvent.isEmpty()) {
             return ResponseEntity.notFound().build();
